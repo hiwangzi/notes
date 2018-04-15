@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Sstudent.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="SstudentStoreContainer">
+    <EntitySet Name="UserSet" EntityType="Sstudent.Store.UserSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ProfileSet" EntityType="Sstudent.Store.ProfileSet" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="UserProfile" Association="Sstudent.Store.UserProfile">
+      <End Role="User" EntitySet="UserSet" />
+      <End Role="Profile" EntitySet="ProfileSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="UserSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Userame" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Profile_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProfileSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StudentNumber" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="姓名" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Sex" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PhoneNumber" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Address" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Hobby" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <Association Name="UserProfile">
+    <End Role="User" Type="Sstudent.Store.UserSet" Multiplicity="*" />
+    <End Role="Profile" Type="Sstudent.Store.ProfileSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Profile">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="Profile_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Sstudent" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="SstudentContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="UserSet" EntityType="Sstudent.User" />
+          <EntitySet Name="ProfileSet" EntityType="Sstudent.Profile" />
+          <AssociationSet Name="UserProfile" Association="Sstudent.UserProfile">
+            <End Role="User" EntitySet="UserSet" />
+            <End Role="Profile" EntitySet="ProfileSet" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Userame" Type="String" Nullable="false" />
+          <Property Name="Password" Type="String" Nullable="false" />
+          <NavigationProperty Name="Profile" Relationship="Sstudent.UserProfile" FromRole="User" ToRole="Profile" />
+        </EntityType>
+        <EntityType Name="Profile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StudentNumber" Type="String" Nullable="false" />
+          <Property Name="姓名" Type="String" Nullable="false" />
+          <Property Name="Sex" Type="String" Nullable="false" />
+          <Property Name="PhoneNumber" Type="String" Nullable="false" />
+          <Property Name="Address" Type="String" Nullable="false" />
+          <Property Name="Hobby" Type="String" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Sstudent.UserProfile" FromRole="Profile" ToRole="User" />
+        </EntityType>
+        <Association Name="UserProfile">
+          <End Type="Sstudent.User" Role="User" Multiplicity="1" />
+          <End Type="Sstudent.Profile" Role="Profile" Multiplicity="1" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SstudentStoreContainer" CdmEntityContainer="SstudentContainer">
+    <EntitySetMapping Name="UserSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Sstudent.User)">
+        <MappingFragment StoreEntitySet="UserSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Userame" ColumnName="Userame" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProfileSet">
+      <EntityTypeMapping TypeName="IsTypeOf(Sstudent.Profile)">
+        <MappingFragment StoreEntitySet="ProfileSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="StudentNumber" ColumnName="StudentNumber" />
+          <ScalarProperty Name="姓名" ColumnName="姓名" />
+          <ScalarProperty Name="Sex" ColumnName="Sex" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Hobby" ColumnName="Hobby" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="UserProfile" TypeName="Sstudent.UserProfile" StoreEntitySet="UserSet">
+      <EndProperty Name="Profile">
+        <ScalarProperty Name="Id" ColumnName="Profile_Id" />
+      </EndProperty>
+      <EndProperty Name="User">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
