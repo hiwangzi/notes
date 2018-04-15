@@ -317,7 +317,7 @@ EF 能帮我们做的事情还有很多，例如可以方便快捷地通过 ToLi
 附上源代码：
 
 * [ZIP 压缩包格式（附带EF依赖）](http://files.cnblogs.com/files/hiwangzi/Sstudent.zip)
-* [GitHub 链接](./resources/)
+* [GitHub 链接](./resources/Sstudent)
 
 补充一个不错的视频（但是其中的实例演示并没有成功）：
 
