@@ -22,7 +22,7 @@ JavaScript 不区分整数和浮点数，统一用 Number 表示，以下都是�
 0.456; // 浮点数0.456
 1.2345e3; // 科学计数法表示1.2345x1000，等同于1234.5
 -99; // 负数
-NaN; // NaN表示Not a Number，当无法计算结果时用NaN表示
+NaN; // NaN表示Not a Number，当无法计算结果时用NaN表示。判断一个数字是否是NaN的唯一方法：isNaN(NaN)
 Infinity; // Infinity表示无限大，当数值超过了JavaScript的Number所能表示的最大值时，就表示为Infinity
 0xff00; // 十六进制数
 ```
@@ -124,7 +124,7 @@ arr[6]; // 索引超出了范围，返回undefined
     ```
   * `concat()`
     * `concat()`方法并没有修改当前`Array`，而是返回了一个新的`Array`
-    * `concat()`方法可以接收任意个元素和`Array`，并且自动把`Array`拆开，然后全部添加到新的`Array`里
+    * `concat()`方法可以接收任意个元素和 `Array`，并且自动把`Array`拆开，然后全部添加到新的`Array`里
       ```javascript
       var arr = ['A', 'B', 'C'];
       arr.concat(1, 2, [3, 4]); // ['A', 'B', 'C', 1, 2, 3, 4]
@@ -199,7 +199,7 @@ arr[6]; // 索引超出了范围，返回undefined
 ## `Map` 与 `Set`
 
 * 对象`{}`也可以视作其他语言中的`Map`，但 key 必须为字符串
-* ES6 引入了 `Map`
+* 因此 ES6 引入了 `Map`
 
 ### `Map`
 
