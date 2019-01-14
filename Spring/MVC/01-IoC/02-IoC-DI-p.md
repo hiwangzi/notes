@@ -1,4 +1,13 @@
+# Spring IoC依赖注入与p命名空间
 
+- [Spring中的bean](#spring中的bean)
+   - [默认情况下Spring容器创建的对象都是单例模式](#默认情况下spring容器创建的对象都是单例模式)
+   - [将scope改为prototype](#将scope改为prototype)
+- [Spring 的继承](#spring-的继承)
+   - [覆盖属性](#覆盖属性)
+- [bean的创建顺序（depends-on属性）](#bean的创建顺序depends-on属性)
+- [Spring读取外部资源](#spring读取外部资源)
+- [使用p命名空间简化配置](#使用p命名空间简化配置)
 
 ## Spring中的bean
 
