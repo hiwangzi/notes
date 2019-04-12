@@ -1,8 +1,8 @@
 # 快速入门
 
 * 简史：
-  * 网景公司于 1995 年发布JavaScript;
-  * ECMAScript 是标准, JavaScript是网景公司对标准的一种具体实现;
+  * 网景公司于 1995 年发布 JavaScript；
+  * ECMAScript 是标准，JavaScript 是网景公司对标准的一种具体实现；
   * ES6 于 2015.6 发布
 
 * 网页中 JavaScript 的引入：
@@ -12,6 +12,8 @@
 * JavaScript 不强制要求在每个语句的结尾加 `;`，浏览器可以自动追补，但这样可能会改变程序语义。
 
 ## 数据类型与变量
+
+* Number、字符串、布尔值、undefined、null、对象（数组、函数……）
 
 ### Number
 
