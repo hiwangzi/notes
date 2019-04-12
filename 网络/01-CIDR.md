@@ -2,7 +2,7 @@
 
 ## 旧式五类地址划分
 
-![CIDR之前的网络号、主机号划分](./resources/no-cidr.jpg)
+![CIDR之前的网络号、主机号划分](./resources/ip-address-classes.jpg)
 
 ## CIDR
 
@@ -12,7 +12,7 @@
 * 虽然现在不再区分A、B、C等网络类别，但其中保留的IP地址段这个概念仍然使用
   ![保留IP地址段](./resources/reserved-ip-address.jpg)
 
-## `ip addr`命令
+## `ip addr` 命令
 
 ```
 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default 
