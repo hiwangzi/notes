@@ -1,0 +1,2 @@
+* [32位离线Chrome](https://www.google.cn/chrome/browser/index.html?hl=zh-CN&platform=win&standalone=1)
+* [64位离线Chrome](https://www.google.cn/chrome/browser/index.html?hl=zh-CN&platform=win64&standalone=1)
