@@ -2,7 +2,7 @@
 
 * 创建实例（将本目录映射到Docker实例根目录`/mysql`下）
   ```shell
-  docker run -v `pwd`:/mysql -p 3306:3306 --name z-mysql -e MYSQL_ROOT_PASSWORD=root -d mysql:5.6
+  docker run -v `pwd`:/mysql -p 3306:3306 --name z-mysql -e MYSQL_ROOT_PASSWORD=root -d mysql:5.6 --character-set-server=utf8mb4
   ```
 
 * 进入实例
