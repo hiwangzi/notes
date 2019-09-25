@@ -1,5 +1,7 @@
 # macOS安装优盘制作
 
+* 参考：[How to Make a Bootable MacOS Mojave Installer Drive](http://osxdaily.com/2018/09/26/make-macos-mojave-boot-usb-installer/)
+
 ## 前提
 
 * 16GB及以上大小的优盘一枚
