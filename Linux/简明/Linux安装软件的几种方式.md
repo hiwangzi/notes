@@ -19,7 +19,7 @@
 编译好的文件，类似于 Windows 下的 exe，后缀一般为 bin，如 jdk 就有 bin 后缀（虽然 Linux 下没有后缀的概念，但为了好区分，一般文件名都加后缀）。安装就是先给它可执行权限，然后执行，例如：
 
 ```shell
-chmod 777 xxx.bin && ./xxx.bin
+chmod 755 xxx.bin && ./xxx.bin
 ```
 
 ## 总结
