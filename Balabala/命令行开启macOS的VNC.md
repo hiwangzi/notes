@@ -5,3 +5,7 @@ sudo  /System/Library/CoreServices/RemoteManagement/ARDAgent.app/Contents/Resour
 -clientopts -setvncpw -vncpw mypasswd \
 -restart -agent -privs -all
 ```
+
+## 参考链接：
+
+* https://apple.stackexchange.com/questions/30238/how-to-enable-os-x-screen-sharing-vnc-through-ssh
