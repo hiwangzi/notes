@@ -14,10 +14,26 @@
 ## 数据类型与变量
 
 * Number、字符串、布尔值、undefined、null、对象（数组、函数……）
+* 判断一个值是什么类型的方式：
+  * `typeof` 运算符
+    ```js
+    typeof 123 // "number
+    typeof null // "object"
+    ```
+  * `instanceof` 运算符
+    ```js
+    var o = {};
+    var a = [];
+
+    o instanceof Array // false
+    a instanceof Array // true
+    ```
+  * `Object.prototype.toString` 方法
 
 ### Number
 
-JavaScript 不区分整数和浮点数，统一用 Number 表示，以下都是合法的 Number 类型。
+* JavaScript 不区分整数和浮点数，统一用 Number 表示，以下都是合法的 Number 类型。
+* JavaScript 内部，所有数字都是以64位浮点数形式储存，即使整数也是如此。所以，`1` 与 `1.0` 是相同的，是同一个数。
 
 ```javascript
 123; // 整数123
@@ -27,6 +43,7 @@ JavaScript 不区分整数和浮点数，统一用 Number 表示，以下都是�
 NaN; // NaN表示Not a Number，当无法计算结果时用NaN表示。判断一个数字是否是NaN的唯一方法：isNaN(NaN)
 Infinity; // Infinity表示无限大，当数值超过了JavaScript的Number所能表示的最大值时，就表示为Infinity
 0xff00; // 十六进制数
+0122; // 八进制数字（或表示为0o122）等于十进制82。前导0表示八进制，处理时很容易造成混乱。ES5 的严格模式和 ES6，已经废除了这种表示法，但是浏览器为了兼容以前的代码，目前还继续支持这种表示法。
 ```
 
 ### 字符串
@@ -57,6 +74,13 @@ Infinity; // Infinity表示无限大，当数值超过了JavaScript的Number所�
 * `&&` 与运算
 * `||` 或运算
 * `!` 非运算
+* 如果 JavaScript 预期某个位置应该是布尔值，会将该位置上现有的值自动转为布尔值。转换规则是除了下面六个值被转为 `false`，其他值都视为 `true`。（注意，空数组（`[]`）和空对象（`{}`）对应的布尔值，都是true）
+  * `undefined`
+  * `null`
+  * `false`
+  * `0`
+  * `NaN`
+  * `""`或`''`（空字符串）
 
 ### 比较运算符
 
@@ -75,7 +99,26 @@ Infinity; // Infinity表示无限大，当数值超过了JavaScript的Number所�
     ```
 
 * `null` 与 `undefined`
-  * JavaScript的设计者希望用`null`表示一个空的值，而`undefined`表示值未定义。事实证明，这并没有什么卵用，区分两者的意义不大。大多数情况下，我们都应该用`null`。`undefined`仅仅在判断函数参数是否传递的情况下有用。
+  * JavaScript的设计者希望用 `null` 表示一个空的值（转为数值时为0），而 `undefined` 表示值未定义（转为数值时为NaN）。事实证明，这并没有什么卵用，区分两者的意义不大。大多数情况下，我们都应该用 `null`。`undefined` 仅仅在判断函数参数是否传递的情况下有用。
+    ```js
+    // 变量声明了，但没有赋值
+    var i;
+    i // undefined
+
+    // 调用函数时，应该提供的参数没有提供，该参数等于 undefined
+    function f(x) {
+      return x;
+    }
+    f() // undefined
+
+    // 对象没有赋值的属性
+    var  o = new Object();
+    o.p // undefined
+
+    // 函数没有返回值时，默认返回 undefined
+    function f() {}
+    f() // undefined
+    ```
 
 ### 数组
 
