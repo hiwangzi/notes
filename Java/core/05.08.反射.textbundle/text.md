@@ -5,12 +5,14 @@
   * 在运行中查看对象
   * 编写泛型数组代码
   * 调用任意方法
-* Class 类用于描述 JVM 中使用的类。
+* `java.lang.Class` 类用于描述 JVM 中使用的类。
 
 ## 在运行中分析类
 
 * `java.lang.reflect`中三个重要的类`Field`、`Method`、`Constructor`分别用于描述类的域、方法、构造器。
-* `Class`类对象的`getFields`、`getMethods`、`getConstructors`方法将分别返回类提供的public 域、方法和构造器数组（包含超类的公有成员）；`getDeclaredFields`、`getDeclaredMethods`、`getDeclaredConstructors`方法将分别返回类中声明的全部域、方法和构造器数组（但不包含超类的成员）。
+* `Class`类对象的
+    * `getFields`、`getMethods`、`getConstructors`方法将分别返回类提供的`public` 域、方法和构造器数组（包含超类的公有成员）
+    * `getDeclaredFields`、`getDeclaredMethods`、`getDeclaredConstructors`方法将分别返回类中声明的全部域、方法和构造器数组（但不包含超类的成员）。
 
 ## 在运行中分析对象
 
@@ -21,7 +23,7 @@
 
 ## 编写泛型数组代码
 
-* 将一个 `Employee[]` 临时地转换成 `Object[]` 数组， 然后再把它转换回来是可以的， 但从开始就是 `Object[]` 的数组却永远不能转换成 `Employe[]` 数组。（但可以进行单个元素的转换）
+* 将一个 `Employee[]` 临时地转换成 `Object[]` 数组， 然后再把它转换回来是可以的， 但最开始就是 `Object[]` 的数组却永远不能转换成 `Employe[]` 数组。（但可以进行单个元素的转换）
     ```java
     Employee[] employees = new Employee[10];
     Object[] objects = employees;
@@ -50,14 +52,14 @@
 ## 调用任意方法
 
 ```java
-Method getMethod(String name, Class... parameterTypes) // 该方法属于`Class`类的实例对象
-
 // `name` 为方法名，`parameterTypes`为该方法的参数类型（因为可能存在重载）
+
+Method getMethod(String name, Class... parameterTypes) // 该方法属于`Class`类的实例对象
 ```
 
 ```java
-public Object invoke(Object obj, Object... args) // 该方法属于`Method`类的实例对象
-
 // `obj` 为该方法所属的对象，如果为静态方法，传入`null`即可，后面的`args`为该方法所需的参数
 // 返回值如果为基本类型，会自动包装后返回
+
+public Object invoke(Object obj, Object... args) // 该方法属于 `Method` 类的实例对象
 ```

@@ -12,12 +12,12 @@
         public void fun() {
             print();
         }
-            /*1*/ void print() {
+        /*(1)*/ void print() {
             System.out.println("父类中的 print() 方法");
         }
     }
     class B extends A {
-            /*2*/ void print() { // 覆写的是 print() 方法
+        /*(2)*/ void print() { // 覆写的是 print() 方法
             System.out.println("子类中的 print() 方法");
         }
     }
@@ -73,7 +73,7 @@ public class VarOverrideDemo {
 ## 关于 `this` 与 `super` 的小总结
 
 |区别|this|super|
-|------|-----|-------|
+|---|----|------|
 |功能|调用本类构造、本类方法、本类属性|子类调用父类构造、父类方法、父类属性|
 |形式|先查找本类中时候存在指定的调用结构，有则调用，无则调用父类定义|不查找子类，直接调用父类调用结构|
 |特殊|表示本类的当前对象||
