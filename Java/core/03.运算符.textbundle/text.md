@@ -42,4 +42,4 @@ public class Demo{
 
 ## 运算符优先级
 
-![运算符优先级](./resources/operator-priority.jpg)
+![运算符优先级](./assets/operator-priority.jpg)

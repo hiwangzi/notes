@@ -4,7 +4,7 @@
 
 1. 声明数组
 
-    ![声明数组](./resources/declare-array.jpg)
+    ![声明数组](./assets/declare-array.jpg)
     ```java
     int score [] = null; // null表示引用数据类型的默认值
     int [] score = null; // 与上一句等价
@@ -12,7 +12,7 @@
 
 2. 为数组开辟空间
 
-    ![声明数组](./resources/allocate-memory-to-array.jpg)
+    ![声明数组](./assets/allocate-memory-to-array.jpg)
 
 * 补充：堆栈内存解释
   * 数组操作中，在栈内存中保存的永远是数组的名称，只开辟了栈内存空间的数组是无法使用的，必须有指向的堆内存才可以使用；
@@ -39,9 +39,9 @@ int score[] = {1, 2, 3, 4, 5};
     ```
 * 声明同时赋值
 
-    ![声明二维数组同时赋值](./resources/init-2d-array.jpg)
+    ![声明二维数组同时赋值](./assets/init-2d-array.jpg)
     ```java
-    /*每行的数组元素个数不一样，分配空间不同*/
+    // 每行的数组元素个数不一样，分配空间不同
     public class ArrayDemo {
         public static void main(String args[]){
             int score[][]={

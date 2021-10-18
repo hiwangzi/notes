@@ -22,7 +22,7 @@
   |访问|可以修改|一定不能做更严格的限制（可以降低限制）|
   > 参考 http://www.runoob.com/java/java-override-overload.html
 
-* [多态](./02.继承与多态.md)是同一个行为具有多个不同表现形式或形态的能力。多态性是对象多种表现形式的体现。
+* **多态**是同一个行为具有多个不同表现形式或形态的能力。多态性是对象多种表现形式的体现。
   * 多态的三个必要条件：
     * 继承
     * 重写
@@ -32,7 +32,7 @@
 
 * 类属于引用传递类型，同样存在着“栈内存-堆内存”的引用关系
 
-  ![内存划分](./resources/memory-allocation.jpg)
+  ![内存划分](./assets/memory-allocation.jpg)
 
   ```java
   Person per = new Person();
@@ -54,10 +54,10 @@
 * 属性保存在堆内存
 * 方法保存在全局代码区（此区域中的内容是所有对象共享的）
 
-![内存划分](./resources/pointer.jpg)
+![内存划分](./assets/pointer.jpg)
 
 注意：对象间的引用传递，实际上传递的就是**堆内存空间的使用权**。
 
 ## 垃圾产生与回收（GC）
 
-![垃圾回收](./resources/gc.jpg)
+![垃圾回收](./assets/gc.jpg)

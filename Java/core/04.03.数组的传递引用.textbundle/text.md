@@ -1,11 +1,20 @@
 # 数组的传递引用
 
+- [数组的传递引用](#数组的传递引用)
+  - [要点](#要点)
+  - [接收和返回数组](#接收和返回数组)
+  - [应用举例](#应用举例)
+    - [1. 数组排序](#1数组排序)
+    - [2. 数组拷贝](#2数组拷贝)
+    - [3. 使用方法交换变量值](#3使用方法交换变量值)
+  - [可变参数](#可变参数)
+  - [foreach](#foreach)
+
 ## 要点
 
 1. 数组引用传递的是 **堆内存** 的使用权，可以将数组传递到方法之中，传递时不需要写 `[]`，直接写数组名。
 2. 方法中对数组的修改都会保留下来。
 3. Java 提供了一些对数组进行操作的方法，例如数组排序，数组拷贝。
-4. 相关内容：[可变参数、foreach](./04.可变参数、foreach.md)
 
 ## 接收和返回数组
 
@@ -124,4 +133,74 @@ public class Swap {
 }
 ```
 
-![交换后结果](resources/var-swap.png)
+![交换后结果](./assets/var-swap.png)
+
+## 可变参数
+
+即方法中，可以接收的参数不再是固定的，而是随着需要传递。
+
+格式如下：
+
+```java
+返回值类型 方法名称(类型 … 参数名称){
+    //函数体
+}
+```
+
+例子：
+
+```java
+public class Demo {
+    public static void main(String args[]) {
+        System.out.print("不传递参数（fun()）：");
+        fun(); // 不传递参数
+        System.out.print("\n传递一个参数（fun(1)）：");
+        fun(1); // 传递一个参数
+        System.out.print("\n传递五个参数（fun(1,2,3,4,5)）：");
+        fun(1, 2, 3, 4, 5);
+    }
+
+    public static void fun(int... arg) { // 可变参数
+        for (int i = 0; i < arg.length; i++) { // 循环输出
+            System.out.print(arg[i] + " ");
+        }
+    }
+
+    // 输出：
+    // 不传递参数（fun()）：
+    // 传递一个参数（fun(1)）：1 
+    // 传递五个参数（fun(1,2,3,4,5)）：1 2 3 4 5 
+}
+```
+
+## foreach
+
+数组的输出，一般都会使用 `for` 循环输出。在 `JDK 1.5` 之后，提出一种 `foreach` 语法。
+格式如下：
+
+```java
+for(数据类型 变量名称: 数组名称){
+    //函数体
+}
+```
+
+例子：
+
+```java
+public class Demo {
+    public static void main(String args[]) {
+        System.out.print("不传递参数（fun()）：");
+        fun(); // 不传递参数
+        System.out.print("\n传递一个参数（fun(1)）：");
+        fun(1); // 传递一个参数
+        System.out.print("\n传递五个参数（fun(1,2,3,4,5)）：");
+        fun(1, 2, 3, 4, 5);
+    }
+
+    public static void fun(int... arg) { // 可变参数
+        for (int anArg : arg) { // 使用foreach输出输出
+            System.out.print(anArg + " ");
+        }
+    }
+}
+```
