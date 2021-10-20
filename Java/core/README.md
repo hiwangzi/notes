@@ -1,4 +1,4 @@
-# Java 笔记
+# 00. Java 笔记
 
 1. [Java 介绍](./01.Java介绍.textbundle/text.md)
 2. [数据类型](./02.数据类型.textbundle/text.md)
