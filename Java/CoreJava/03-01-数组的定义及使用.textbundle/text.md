@@ -184,7 +184,7 @@ public class Swap {
 }
 ```
 
-![交换后结果](resources/var-swap.png)
+![交换后结果](./assets/var-swap.png)
 
 ### 可变参数
 

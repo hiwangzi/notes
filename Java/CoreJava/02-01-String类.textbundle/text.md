@@ -42,7 +42,7 @@ public class StringDemo07 {
     } 
 }
 ```
-![直接赋值实例化字符串](./resources/1.png)
+![直接赋值实例化字符串](./assets/1.png)
 
 ### 方式二
 
@@ -53,7 +53,7 @@ public class StringDemo08 {
     } 
 }
 ```
-![通过new关键字实例化字符串](./resources/2.png)
+![通过new关键字实例化字符串](./assets/2.png)
 
 故：
 使用直接赋值的方式只需要一个实例化对象即可，而使用new String()的方式则需要开辟两个内存对象空间。所以在开发中最好使用直接赋值的方式完成。
