@@ -7,7 +7,6 @@
     * [3.1 数组的定义及使用](./03-01-数组的定义及使用.textbundle/text.md)
     * [3.2 泛型数组、包装类](./03-02-泛型数组-包装类.textbundle/text.md)
     * [3.3 方法的声明及使用](./03-03-方法的声明及使用.textbundle/text.md)
-    * [3.4 数组的传递引用](./03-04-数组的传递引用.textbundle/text.md)   
 4. 面向对象
     * [4.1 面向对象基础](./04-01-面向对象基础.textbundle/text.md)
     * [4.2 继承与多态](./04-02-继承与多态.textbundle/text.md)
