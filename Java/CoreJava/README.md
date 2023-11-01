@@ -14,5 +14,8 @@
     * [4.4 匿名对象与字符串缓冲池](./04-04-匿名对象与字符串缓冲池.textbundle/text.md)
     * [4.5 代码块](./04-05-代码块.textbundle/text.md)
     * [4.6 内部类](./04-06-内部类.textbundle/text.md)
-    * [4.7 UML、类的一些要点补充](./04-07-UML-类的一些要点补充.textbundle/text.md)
-    * [4.8 反射](./04-08-反射.textbundle/text.md)
+    * [4.7 UML](04-07-UML.textbundle/text.md)
+    * [4.8 反射与泛型](04-08-反射与泛型.textbundle/text.md)
+5. 接口、lambda
+    * [5.1 接口](./05-01-接口.textbundle/text.md)
+    * [5.2 lambda](./05-02-lambda.textbundle/text.md)
