@@ -73,8 +73,190 @@ Method getMethod(String name, Class... parameterTypes) // 该方法通过「Clas
 public Object invoke(Object obj, Object... args) // 该方法通过「Method对象.invoke」调用
 ```
 
-## 编写泛型数组代码
-### 例子目标：实现一个通用的数组拷贝方法
+## 泛型
+* Java的泛型是在编译时实现的，被称为类型擦除（Type Erasure）。意味着泛型信息只存在于编译时期，编译完成后所有关于泛型的信息都会被擦除，替换为它们的原生类型或者指定的边界类型。
+* 关于擦除：
+    * 如果类型参数是无界的，生成的字节码使用`Object`替代泛型。
+    * 如有必要，插入类型铸件（第一个边界类）以保持类型安全。
+### 泛型边界
+* 有时可能希望限制可在参数化类型中用作类型参数的类型。例如，对数字进行操作的方法可能只想接受Number或其子类的实例。这时就需要用到有界类型参数。
+* 除了限制可用于实例化泛型类型的类型之外，有界类型参数还允许调用边界中定义的方法：
+  ```java
+  public class NaturalNumber<T extends Integer> {
+    private T n;
+    public NaturalNumber(T n) { this.n = n; }
+    public boolean isEven() { return n.intValue() % 2 ==0; } // isEven方法通过n调用Integer类中定义的intValue方法
+  }
+  ```
+* 类型参数是可以有多个边界的，例如 `<T extends B1 & B2 & B3>`。但要注意，具有多个边界的类型变量是绑定中列出的所有类型的子类型。如果其中一个边界是类，就必须首先指定它。例如：
+  ```java
+  Class A { ... }
+  interface B { ... }
+  interface C { ... }
+  class D <T extends A & B & C> { ... } // ✅
+  class D <T extends B & A & C> { ... } // ❌会出现编译时错误
+  ```
+* 另外，有界类型参数中的extends既可以表示“extends”（类中的继承），也可以表示“implements”（接口中的实现）。
+### 泛型的继承和子类型
+![继承对比](./assets/generics-and-extending.png)
+```java
+public void someMethod(Number n) { ... }
+someMethod(new Integer(10)); // ✅
+someMethod(new Double(1.0)); // ✅
+```
+```java
+Box<Number> box = new Box<Number>();
+box.add(new Integer(10)); // ✅
+box.add(new Double(1.0)); // ✅
+```
+```java
+public void someMethod(Box<Number> n) { ... }
+someMethod(new Box<Number>()); // ✅
+someMethod(new Box<Integer>()); // ❌
+someMethod(new Box<Double>()); // ❌
+```
+但是可以扩展或实现泛型类、泛型接口，例如下图2-5表示的Java的`Collection`接口，右边的图2-6是如下代码自定义的`PayloadList`：
+![Collection与泛型](./assets/generics-for-collection.png)
+```java
+interface PayloadList<E, P> extends List<E> {
+    void setPayload(int index, P val);
+}
+```
+### 通配符
+泛型和通配符是两个相关但独立的概念，但它们都是Java泛型系统的一部分，都用于增强代码的类型安全性和重用性。**通配符**是 Java 泛型的一部分，用于表示未知类型。它们主要用在变量声明和方法签名中，表示可以接受泛型参数的不同类型。例如，`List<?>` 表示 "一个未知类型的元素的列表"，可以是 `List<String>`、`List<Integer>` 等。
+
+通配符在 Java 泛型中的使用并不仅限于方法。它们主要用于类型参数化，如在变量声明、方法参数、方法返回类型以及类型转换中。以下是一些例子：
+
+1. **变量声明**：你可以使用通配符来声明一个变量，表示这个变量可以持有任何类型的对象。
+
+```java
+List<?> myList; // myList 可以持有任何类型的 List
+```
+
+2. **方法参数**：你可以在方法参数中使用通配符，表示这个方法可以接受任何类型的参数。
+
+```java
+public void printList(List<?> list) { // 可以接受任何类型的 List
+    for (Object item : list) {
+        System.out.println(item);
+    }
+}
+```
+
+3. **方法返回类型**：你可以在方法返回类型中使用通配符，表示这个方法可以返回任何类型的对象。
+
+```java
+public List<?> getUnknownList() {
+    // 返回任意类型的 List
+}
+```
+
+4. **类型转换**：你可以在类型转换中使用通配符，表示你可以将一个对象转换为任何类型的对象。
+
+```java
+List<?> myList = (List<?>) someObject; // 将 someObject 转换为任意类型的 List
+```
+
+然而，虽然通配符提供了很大的灵活性，但它也有一些限制。例如，你不能用通配符来创建一个新的实例（如 `new List<?>()` 是不合法的）。另外，因为通配符表示未知类型，所以你通常不能将对象添加到 `List<?>` 中（除了 `null` 之外）。
+
+#### 三种通配符示例
+Java 泛型中的通配符 `?` 主要用于增加代码的灵活性，并允许泛型类型的变化。
+
+有三种主要的通配符：
+
+1. **无界通配符（Unbounded Wildcard）**： `?`。表示可以接受任何类型。这在你需要操作但不关心实际类型的集合时非常有用。
+
+```java
+public void printList(List<?> list) {
+    for (Object item : list) {
+        System.out.println(item);
+    }
+}
+```
+
+2. **上界通配符（Upper Bounded Wildcard）**： `? extends T`。表示可以接受任何 T 类型或其子类。这在你需要使用特定类及其子类的通用方法时非常有用。
+
+```java
+public double sumOfList(List<? extends Number> list) {
+    double sum = 0.0;
+    for (Number n : list) {
+        sum += n.doubleValue();
+    }
+    return sum;
+}
+```
+
+在这个例子中，我们可以传递任何 `Number` 的子类的 `List`（例如 `Integer`、`Double` 等）到 `sumOfList` 方法。
+
+3. **下界通配符（Lower Bounded Wildcard）**： `? super T`。表示可以接受 T 类型或其父类。这在你需要将对象写入具有特定类型或其父类型的集合时很有用。
+
+```java
+public void addNumbers(List<? super Integer> list) {
+    for (int i = 1; i <= 10; i++) {
+        list.add(i);
+    }
+}
+```
+
+在这个例子中，我们可以将 `Integer` 对象添加到任何 `Integer` 的父类（如 `Number` 或 `Object`）的 `List` 中。
+
+总的来说，Java 泛型中的通配符为我们提供了更大的灵活性，使我们能够编写更加通用和可复用的代码。
+#### 使用通配符处理继承
+```java
+List<Integer> intList = new ArrayList<>();
+List<Number> numList = intList; // ❌
+
+List<? extends Integer> intChildList = new ArrayList<>();
+List<? extends Number> numChildList = intChildList; // ✅
+
+intChildList = intList; // ✅
+List<Number> numList2 = new ArrayList<>();
+numChildList = numList2; // ✅
+
+List<? super Integer> intParentList = intList; // ✅
+```
+![list-number-and-list-integer](assets/list-number-and-list-integer.png)
+![list-extends-super](assets/list-extends-super.png)
+
+### 使用泛型的一些限制
+1. 无法创建类型参数的实例
+    ```java
+    public static <E> void append(List<E> list) {
+        E element = new E(); // ❌ 编译时错误
+        list.add(element);
+    }
+    ```
+    ```java
+    public static <E> void append(List<E> list, Class<E> cls) throws Exception {
+        E element = cls.newInstance(); // ✅
+        list.add(element);
+    }
+    ```
+2. 无法声明类型为类型参数的静态字段
+    ```java
+    class MobileDevice<T> {
+        private static T device; // ❌ 因为不确定T是什么类型，无法静态
+    }
+    ```
+3. 因为类型擦除，无法强制转换类型参数，或者使用 `instanceOf`
+    ```java
+    public static <E> void instanceCheck(List<E> list) {
+        System.out.println(list instanceof List<Integer>); // ❌
+        System.out.println(list instanceof List<?>); // ✅
+        System.out.println(list instanceof ArrayList<Integer>); // ❌
+        System.out.println(list instanceof ArrayList<?>); // ✅
+    }
+
+    public static void main(String[] args) {
+        List<Integer> intList = new ArrayList<>();
+        System.out.println(intList instanceof ArrayList<Number>);
+        List<Number> numList = (List<Number>) intList; // ❌
+        ArrayList<Integer> intArrayList = (ArrayList<Integer>) intList; // ✅
+    }
+    ```
+
+### 编写泛型数组代码
+#### 例子目标：实现一个通用的数组拷贝方法
 ```java
 public static void main(String[] args) {
     int[] a = {1, 2, 3};
@@ -89,7 +271,7 @@ public static void main(String[] args) {
 }
 ```
 
-### 限制下的 `badCopyOf`
+#### 限制下的 `badCopyOf`
 * 将一个对象数组（`String[]`）临时地转换成 `Object[]` 数组， 然后再把它转换回来是可以的。
 * 但***最开始***就是 `Object[]` 的数组却永远不能转换成对象数组。
 * 不过可以通过进行单个元素的转换，循环处理得到目标类型数组。
@@ -121,7 +303,7 @@ public static void main(String[] args) {
     }
     ```
 
-### 利用反射实现 `goodCopyOf`
+#### 利用反射实现 `goodCopyOf`
 
 ```java
 // 1. 参数 array 的类型为 Object，而不是 Object[] 的原因：整型数组类型int[]可以被转换成Object，但不能转换成对象数组。
