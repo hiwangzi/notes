@@ -19,3 +19,4 @@
 5. 接口、lambda
     * [5.1 接口](./05-01-接口.textbundle/text.md)
     * [5.2 lambda](./05-02-lambda.textbundle/text.md)
+6. [集合框架](06-collection-framework.textbundle/text.md)

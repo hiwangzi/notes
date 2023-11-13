@@ -1,0 +1,64 @@
+@startuml
+
+' Basic
+interface Collection
+interface List
+interface Set
+interface Queue
+abstract AbstractCollection
+abstract AbstractList
+abstract AbstractSet
+abstract AbstractQueue
+abstract AbstractSequentialList
+
+' Implements
+interface SortedSet
+interface NavigableSet
+class TreeSet
+class HashSet
+class LinkedHashSet
+interface Deque
+class LinkedList
+class ArrayList
+class Vector
+class Stack
+class PriorityQueue
+
+' Relationship - Basic
+Collection <|-- List
+Collection <|-- Set
+Collection <|-- Queue
+Queue <|-- Deque
+Collection <|-- AbstractCollection
+AbstractCollection <|-- AbstractList
+AbstractCollection <|-- AbstractSet
+AbstractCollection <|-- AbstractQueue
+List <|-- AbstractList
+Set <|-- AbstractSet
+Queue <|-- AbstractQueue
+AbstractList <|-- AbstractSequentialList
+
+' Relationship - Set
+AbstractSet <|-- TreeSet
+NavigableSet <|-- TreeSet
+SortedSet <|-- NavigableSet
+Set <|-- SortedSet
+AbstractSet <|-- HashSet
+Set <|-- HashSet
+HashSet <|-- LinkedHashSet
+Set <|-- LinkedHashSet
+
+' Relationship - List
+AbstractSequentialList <|-- LinkedList
+List <|-- LinkedList
+Deque <|-- LinkedList
+AbstractList <|-- ArrayList
+List <|-- ArrayList
+AbstractList <|-- Vector
+List <|-- Vector
+Vector <|-- Stack
+
+' Queue
+AbstractQueue <|-- PriorityQueue
+
+@enduml
