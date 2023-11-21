@@ -1,0 +1,1 @@
+https://docstore.mik.ua/orelly/unix3/upt/ch03_04.htm
