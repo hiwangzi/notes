@@ -9,6 +9,7 @@
 
 * 列出表：`show tables`
 * 列出列：`show columns from <table_name>` 或 `describe <table_name>`(`desc <table_name>`)
+    * `describe customers` 相当于 `show columns from customers` 的别名
 
 ## 其他
 
@@ -19,7 +20,7 @@
 * 显示服务器错误信息：`show errors`
 * 显示服务器警告信息：`show warnings`
 
-### 系统变量
+## 系统变量
 
 ```sql
 -- SHOW VARIABLES 命令用于列出MySQL的所有系统变量，例如：
