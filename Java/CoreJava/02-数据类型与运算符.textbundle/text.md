@@ -139,12 +139,17 @@ enum Size { SMALL, MEDIUM, LARGE, EXTRA_LARGE };
 
 #### `length` 方法
 
-* Java 语言里 String 在内存中以是 UTF-16 方式编码
-* `"".length()`：The length is equal to the number of Unicode code units in the string.
-* 因此，实际`length`方法在Java中返回的是UTF-16的代码单元数目。
+* 实际`length`方法在Java中返回的是UTF-16的代码单元数目，因为：
+  * Java 语言里 String 在内存中以是 UTF-16 方式编码
+  * `"".length()`：The length is equal to the number of Unicode code units in the string.
 * BMP内的字符转义`\uXXXX`即可（Unicode转义序列会在解析代码之前得到处理）
 * 增补平面内的字符转义写成 UTF-16 的代理对形式，例：`U+1D11E`写作`\uD834\uDD1E`，虽然是一个字符，但其`.length()`结果为2
 * 若想得到非BMP的字符数，可以使用`codePointCount`方法。
+  ```java
+  String str = "👍"; // 这个字符串实际上包含一个字符，但是使用了两个 UTF-16 编码单元
+  int length = str.length(); // 返回 2
+  int codePointCount = str.codePointCount(0, str.length()); // 返回 1，这是实际的字符数
+  ```
 
 #### `getBytes` 方法
 
