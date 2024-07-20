@@ -1,6 +1,6 @@
 # Maven
 
-- lifecycles > phases > goals
+- lifecycles > phases > goals(不严谨，goal属于plugin的一部分)
 
   Three built-in build **lifecycles**: `default`, `clean` and `site`.
 
