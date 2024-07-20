@@ -103,6 +103,9 @@ repositories {
 需要注意的是，添加的仓库越多，查找依赖的时间可能会越长，因此最好只添加实际需要的仓库。
 
 ## dependencies
+
+https://docs.gradle.org/current/userguide/java_library_plugin.html#sec:java_library_configurations_graph
+
 ```kotlin
 dependencies {
     implementation("com.example:library:1.0.0") // 在编译和运行阶段都需要这个库
