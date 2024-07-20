@@ -1,4 +1,4 @@
-# Spring IoC
+# Spring IoC 基于 XML 配置
 
 * IoC 是典型的工厂模式，通过工厂去注入对象
 * AOP 是代理模式的体现

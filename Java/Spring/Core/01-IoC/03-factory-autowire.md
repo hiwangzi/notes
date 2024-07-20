@@ -98,7 +98,7 @@ public class Person {
 <!-- 这时仍然可以通过 property 标签手动进行 car 的注入，其优先级更高，若两种方式同时配置，以 property 的配置为准。 -->
 ```
 
-```java
+```
 ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring.xml");
 Person person = (Person) applicationContext.getBean("person");
 System.out.println(person);
@@ -111,19 +111,21 @@ Person [id=1, name=张三, car=Car [num=2, brand=奥拓]]
 ### 通过类型（byType）
 
 ```xml
-<bean id="person" class="com.southwind.entity.Person" autowire="byType"> 
-   <property name="id" value="1"></property>
-   <property name="name" value="张三"></property>
-</bean>
-<bean id="car" class="com.southwind.entity.StaticCarFactory" factory-method="getCar">
-   <constructor-arg value="1"></constructor-arg>
-</bean>
-<bean id="car2" class="com.southwind.entity.StaticCarFactory" factory-method="getCar">
-   <constructor-arg value="2"></constructor-arg>
-</bean>
+<beans>
+  <bean id="person" class="com.southwind.entity.Person" autowire="byType">
+    <property name="id" value="1"></property>
+    <property name="name" value="张三"></property>
+  </bean>
+  <bean id="car" class="com.southwind.entity.StaticCarFactory" factory-method="getCar">
+    <constructor-arg value="1"></constructor-arg>
+  </bean>
+  <bean id="car2" class="com.southwind.entity.StaticCarFactory" factory-method="getCar">
+    <constructor-arg value="2"></constructor-arg>
+  </bean>
+</beans>
 ```
 
-```java
+```
 ApplicationContext applicationContext = new ClassPathXmlApplicationContext("spring.xml");
 Person person = (Person) applicationContext.getBean("person");
 System.out.println(person);
